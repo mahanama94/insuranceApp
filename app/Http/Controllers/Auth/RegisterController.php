@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace Omicron\Http\Controllers\Auth;
 
-use App\User;
+use Omicron\User;
 use Validator;
-use App\Http\Controllers\Controller;
+use Omicron\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller

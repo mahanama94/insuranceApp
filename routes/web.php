@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('/policy','PolicyController');
+
+Route::resource('/files', 'FileController');
+
+Route::resource('/taxi','TaxiController');
+
+Route::resource('/towing', 'TowController');
