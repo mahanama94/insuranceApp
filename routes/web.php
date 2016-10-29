@@ -19,6 +19,6 @@ Route::resource('/policy','PolicyController');
 
 Route::resource('/files', 'FileController');
 
-Route::get('/taxi','TaxiController@index');
+Route::resource('/taxi','TaxiController@index');
 
 Route::resource('/towing', 'TowController');
