@@ -26,10 +26,10 @@ class TaxiController extends Controller
 
     public function index(){
         // TODO return response for all the bookings by the user
-//        return response([
-//            'booking' => $this->transform('booking', $this->taxiServiceProvider->bookTaxi('pickme', []))
-//        ]);
-        return view('welcome');
+        return response([
+            'booking' => $this->transform('booking', $this->taxiServiceProvider->bookTaxi('pickme', []))
+        ]);
+
     }
 
     public function show($taxi){
