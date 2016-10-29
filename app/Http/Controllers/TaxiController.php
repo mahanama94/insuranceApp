@@ -26,7 +26,7 @@ class TaxiController extends Controller
 
     public function index(){
         // TODO return response for all the bookings by the user
-        return response([
+        return response()->json([
             'booking' => $this->transform('booking', $this->taxiServiceProvider->bookTaxi('pickme', []))
         ]);
 
