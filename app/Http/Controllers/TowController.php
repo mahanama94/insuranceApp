@@ -9,8 +9,12 @@
 namespace Omicron\Http\Controllers;
 
 
+use Omicron\Http\Requests\Towing\BookTow;
+use Omicron\Http\Requests\Towing\ViewTow;
 use Omicron\Models\ServiceProviders\TowServiceProvider;
+use Omicron\Models\TowBooking;
 use Omicron\Models\Transformers\Transformable;
+use Illuminate\Database\Eloquent\Collection;
 
 class TowController extends Controller
 {
@@ -25,16 +29,33 @@ class TowController extends Controller
     }
 
     public function index(){
-        // TODO return response for all the towings by the user
+        $random = rand(2, 6);
+
+        $collection = new Collection();
+
+        for( $i = 0; $i < $random;$i = $i +1){
+            $collection = $collection->add(new TowBooking([]));
+        }
+
+        return response([
+            'towBooking' => $this->transform('towBooking', $collection)
+        ]);
+
     }
 
-    public function show($taxi){
-        // TODO return response for the given tow booking
+    public function show($towing){
+        return response([
+            'towBooking' => $this->transform('towBooking', $this->towServiceProvider->retrieveBooking($towing))
+        ]);
     }
 
-    public function store(Request $request){
-        // TODO store tow booking
+    public function store(BookTow $request)
+    {
+
+        return response([
+            'towBooking' => $this->transform('towBooking',
+                $this->towServiceProvider->bookTow($request->input('serviceProvider'), $request->all()))
+        ]);
     }
-    
 
 }

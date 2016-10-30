@@ -20,6 +20,8 @@ class Kernel extends HttpKernel
     /**
      * The application's route middleware groups.
      *
+     * \Omicron\Http\Middleware\VerifyCsrfToken::class,
+     * 
      * @var array
      */
     protected $middlewareGroups = [
@@ -28,7 +30,6 @@ class Kernel extends HttpKernel
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \Omicron\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 

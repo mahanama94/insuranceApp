@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: bhanuka
@@ -8,9 +9,13 @@
 
 namespace Omicron\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Collection;
+use Omicron\Http\Requests\Taxi\BookTaxi;
+use Omicron\Http\Requests\Taxi\TaxiBookTaxi;
+use Omicron\Http\Requests\Taxi\ViewTaxi;
 use Omicron\Models\ServiceProviders\TaxiServiceProvider;
 use Omicron\Models\Transformers\Transformable;
+use Omicron\Models\Booking;
 
 
 class TaxiController extends Controller
@@ -25,21 +30,35 @@ class TaxiController extends Controller
     }
 
     public function index(){
-        // TODO return response for all the bookings by the user
-        return response()->json([
-            'booking' => $this->transform('booking', $this->taxiServiceProvider->bookTaxi('pickme', []))
+
+        echo "called";
+
+        $random = rand(2, 6);
+
+        $collection = new Collection();
+
+        for( $i = 0; $i < $random;$i = $i +1){
+            $collection = $collection->add(new Booking([]));
+        }
+
+        return response([
+            'booking' => $this->transform('booking', $collection)
         ]);
 
     }
 
-    public function show($taxi){
-        // TODO return response for the given taxi booking
+    public function show($taxi, ViewTaxi $request){
+
+        return response([
+            'booking' => $this->transform('booking', $this->taxiServiceProvider->retrieveBooking($taxi))
+        ]);
+
+
     }
 
-    public function store(Request $request){
-        // TODO store taxi booking
+    public function store(BookTaxi $request){
         return response([
-            'booking' => $this->transform('booking', $this->taxiServiceProvider->bookTaxi('pickme', []))
+            'booking' => $this->transform('booking', $this->taxiServiceProvider->bookTaxi($request->input('serviceProvider'), $request->all()))
         ]);
     }
 
