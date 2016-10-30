@@ -2,16 +2,15 @@
 /**
  * Created by PhpStorm.
  * User: bhanuka
- * Date: 10/28/16
- * Time: 11:03 PM
+ * Date: 10/30/16
+ * Time: 1:22 PM
  */
 
 namespace Omicron\Models\Services\TowServices;
 
-
 use Omicron\Models\TowBooking;
 
-class CityTowService extends TowService
+class AATowServiceProvider extends TowService
 {
 
     public function bookTow()

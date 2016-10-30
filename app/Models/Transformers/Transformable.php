@@ -17,7 +17,8 @@ trait Transformable
     public function initializeTransformers()
     {
         $this->transformers = [
-            'booking' => new BookingTransformer()
+            'booking' => new BookingTransformer(),
+            'towBooking' => new TowBookingTransformer()
         ];
     }
 

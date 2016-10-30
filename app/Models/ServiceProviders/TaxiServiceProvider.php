@@ -9,6 +9,9 @@
 
 namespace Omicron\Models\ServiceProviders;
 
+use Illuminate\Database\Eloquent\Collection;
+use Omicron\Models\Booking;
+use Omicron\Models\Services\LocationServices\IdeaMartServiceAdapter;
 use Omicron\Models\Services\TaxiServices\PickMeTaxiService;
 use Omicron\Models\Services\TaxiServices\UberTaxiService;
 
@@ -24,7 +27,23 @@ class TaxiServiceProvider extends ServiceProvider
     }
 
     public function bookTaxi($name, $parameters){
+
+        $location = IdeaMartServiceAdapter::getLocation($parameters['mobileNumber']);
+
+        $parameters = array_merge($parameters, [
+            'location' => [
+                'latitude' => $location->getLatitude(),
+                'longitude' => $location->getLongitude(),
+                'address' => $location->getAddress()
+            ]
+        ]);
+
         return $this->serviceProviders[$name]->bookTaxi($parameters);
+    }
+
+    public function retrieveBooking($referenceNumber){
+
+        return new Collection([new Booking([])]);
     }
 
 }

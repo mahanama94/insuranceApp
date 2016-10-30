@@ -1,19 +1,18 @@
 <?php
-
 /**
  * Created by PhpStorm.
  * User: bhanuka
- * Date: 10/28/16
- * Time: 8:23 PM
+ * Date: 10/30/16
+ * Time: 1:25 PM
  */
 
 namespace Omicron\Models;
 
-use Illuminate\Database\Eloquent\Model;
 
 use Faker\Factory;
+use Illuminate\Database\Eloquent\Model;
 
-class Booking extends Model
+class TowBooking extends Model
 {
 
     protected $faker;
@@ -29,7 +28,7 @@ class Booking extends Model
     }
 
     public function getStatus(){
-        return $this->faker->randomElement(['pending', 'Finished']);
+        return $this->faker->randomElement(['OnTheWay', 'BeingTowed', 'Finished']);
     }
 
     public function getDriverName(){
@@ -44,12 +43,8 @@ class Booking extends Model
         return $this->faker->randomNumber(5);
     }
 
-    public function getVehicleType(){
-        return $this->faker->randomElement(['tuktuk', 'mini', 'sedan']);
-    }
-
     public function getServiceProvider(){
-        return $this->faker->randomElement(['uber', 'pickme']);
+        return $this->faker->randomElement(['AA', 'CC']);
     }
 
 }
