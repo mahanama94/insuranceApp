@@ -11,11 +11,18 @@
 |
 */
 
+header('Access-Control-Allow-Origin:  *');
+header('Access-Control-Allow-Methods:  POST, GET, OPTIONS, PUT, DELETE');
+header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Authorization');
 
-Route::resource('/policy','PolicyController');
+Route::resource('/policy','PolicyController', ['only' => ['index','show', 'store']]);
 
 Route::resource('/files', 'FileController');
 
-Route::resource('/taxi','TaxiController');
+Route::resource('/taxi','TaxiController', ['only' => ['index', 'show', 'store']]);
 
-Route::resource('/towing', 'TowController');
+Route::resource('/towing', 'TowController' , ['only' => ['index', 'show', 'store']]);
+
+Route::resource('/Vehicles', 'VehicleController', ['only' => 'index']);
+
+Route::resource('/insurance', 'InsuranceController', ['only' => 'show']);
