@@ -31,8 +31,6 @@ class TaxiController extends Controller
 
     public function index(){
 
-        echo "called";
-
         $random = rand(2, 6);
 
         $collection = new Collection();
